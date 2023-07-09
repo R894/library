@@ -12,6 +12,9 @@ function Book(title, author, pages, read){
             return `${title}, ${author}, ${pages} pages, read`;
         }
     }
+    this.toggleRead = function(){
+        this.read = !this.read;
+    }
 }
 
 var addBookButton = document.getElementById("add-book");
@@ -40,15 +43,30 @@ function displayBook(book){
     var title = document.createElement('div');
     var author = document.createElement('div');
     var pages = document.createElement('div');
+    var bookRead = document.createElement('div');
+    var removeButton = document.createElement('button');
+
 
     card.classList.add('book');
+    card.setAttribute('data', myLibrary.indexOf(book));
+    removeButton.textContent = 'Remove'
     title.textContent = `Title: ${book.title}`;
     author.textContent = `Author: ${book.author}`;
     pages.textContent = `Pages: ${book.pages}`;
 
+    if(book.read == true){
+        bookRead.textContent = 'Read';
+    }else{
+        bookRead.textContent = 'Not Read';
+    }
+    removeButton.addEventListener("click", function(){
+        removeBook(myLibrary.indexOf(book));
+    });
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
+    card.appendChild(bookRead);
+    card.appendChild(removeButton);
 
     cardContainer.appendChild(card);
 }
@@ -58,6 +76,6 @@ function addBookToLibrary(book){
     displayBook(book);
 }
 
-var lebook = new Book("yeah", "dude", 238, true);
-
-displayBook(lebook);
+function removeBook(id){
+    document.querySelector(`[data="${id}"]`).remove();
+}
