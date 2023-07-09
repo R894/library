@@ -6,10 +6,10 @@ function Book(title, author, pages, read){
     this.pages = pages;
     this.read = read;
     this.info = function(){
-        if(read){
-            return `${title}, ${author}, ${pages} pages, not read yet`;
+        if(!this.read){
+            return "Not read yet";
         } else {
-            return `${title}, ${author}, ${pages} pages, read`;
+            return "Read";
         }
     }
     this.toggleRead = function(){
@@ -27,10 +27,10 @@ form.addEventListener("submit", function(event){
     const title = document.getElementById("author").value;
     const author = document.getElementById("name").value;
     const pages = document.getElementById("pages").value;
-    const read = document.querySelector("#read");
+    const read = document.querySelector("#read").checked;
     form.reset();
 
-    addBookToLibrary(new Book(title, author, pages, read.checked));
+    addBookToLibrary(new Book(title, author, pages, read));
 
 });
 
@@ -44,28 +44,33 @@ function displayBook(book){
     var author = document.createElement('div');
     var pages = document.createElement('div');
     var bookRead = document.createElement('div');
+    var bookReadButton = document.createElement('button');
     var removeButton = document.createElement('button');
-
 
     card.classList.add('book');
     card.setAttribute('data', myLibrary.indexOf(book));
-    removeButton.textContent = 'Remove'
+    removeButton.textContent = 'Remove';
     title.textContent = `Title: ${book.title}`;
     author.textContent = `Author: ${book.author}`;
     pages.textContent = `Pages: ${book.pages}`;
 
-    if(book.read == true){
-        bookRead.textContent = 'Read';
-    }else{
-        bookRead.textContent = 'Not Read';
-    }
+    bookRead.textContent = book.info();
+    bookReadButton.textContent = 'Toggle Read';
+
     removeButton.addEventListener("click", function(){
         removeBook(myLibrary.indexOf(book));
     });
+
+    bookReadButton.addEventListener("click", function(){
+        book.toggleRead();
+        bookRead.textContent = book.info();
+    })
+
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
     card.appendChild(bookRead);
+    card.appendChild(bookReadButton);
     card.appendChild(removeButton);
 
     cardContainer.appendChild(card);
