@@ -1,0 +1,73 @@
+
+.header{
+    background-color: #f0f0f0;
+    width: 100%;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    font-size: 2rem;
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.books{
+    
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.book {
+    background-color: #f0f0f0;
+    width: 200px;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-wrap: break-word;
+    padding: 1rem;
+  }
+  
+.book div {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+#book-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+#book-form input{
+    margin-bottom: 0.5rem;
+}
+
+#add-book{
+    font-size: 1rem;
+    margin-top: 1rem;
+}
