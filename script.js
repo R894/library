@@ -41,6 +41,10 @@ class Library {
 
     removeBook(book){
         document.querySelector(`[data="${book.getId()}"]`).remove();
+        var id = book.getId();
+        if(id !== -1){
+            this.myLibrary.splice(id, 1);
+        }
     }
 
     displayBook(book){
